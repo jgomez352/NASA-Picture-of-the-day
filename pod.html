@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Nasa Picture of the Day</title>
+</head>
+<body>
+    <div id="content">
+        <em>
+            <h1 id="output"></h1>
+        </em>
+        <img src="" width="1080" />
+        <br />
+        <br />
+        <em>The Gomez Bunch - Nasa Picture of the Day</em>
+    </div>
+
+
+    <script>
+        var output = document.querySelector("#output");
+        var image = document.querySelector("img");
+
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var response = request.responseText;
+                console.log(response);
+                var o = JSON.parse(response);
+                output.innerHTML = o.title;
+                image.src = o.hdurl;
+            }
+        };
+        request.open("GET", "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY");
+        request.send();
+    </script>
+    <style>
+        body{
+            background-color: black;
+        }
+
+        #content {
+            text-align: center;
+            color: aqua;
+        }
+    </style>
+</body>
+</html>
