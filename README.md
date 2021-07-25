@@ -1,4 +1,4 @@
-# Nasa-Picture-of-the-day
+# NASA-Picture-of-the-day
 Fun API for the family
 
 API Source Documentation
