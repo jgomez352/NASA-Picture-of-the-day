@@ -11,8 +11,10 @@
             <h1 id="output"></h1>
         </em>
         <img src="" width="1080" />
-        <br />
-        <br />
+        <br>
+        <em id="explenation"></em>
+        <br>
+        <br>
         <em>The Gomez Bunch - Nasa Picture of the Day</em>
     </div>
 
@@ -20,6 +22,7 @@
     <script>
         var output = document.querySelector("#output");
         var image = document.querySelector("img");
+        var explanation = document.querySelector("#explenation");
 
         var request = new XMLHttpRequest();
         request.onreadystatechange = function () {
@@ -29,6 +32,13 @@
                 var o = JSON.parse(response);
                 output.innerHTML = o.title;
                 image.src = o.hdurl;
+                if (o.explanation == null){
+                    explanation.innerHTML = "Image has no caption";
+                }
+                else{
+                    explanation.innerHTML = o.explanation;
+                }
+                
             }
         };
         request.open("GET", "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY");
